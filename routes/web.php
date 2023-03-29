@@ -31,3 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/orders', [OrderController::class, 'orderList']);
 
 Route::get('/orders/cancel/{id}', [OrderController::class, 'cancel']);
+
+Route::get('/products/add', [ProductController::class, 'create']);
+
+Route::post('/products/add', [ProductController::class, 'add']);

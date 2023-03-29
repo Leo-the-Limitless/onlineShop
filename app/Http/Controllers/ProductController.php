@@ -31,4 +31,23 @@ class ProductController extends Controller
         ]
     );
     }
+
+    public function create()
+    {
+        return view('products.add');
+    }
+
+    public function add()
+    {
+        $validator = validator(request()->all(), [
+            'product_name' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        $product = new Product;
+        $product->product_name = request()->product_name;
+        $product->save();
+        return redirect('/products')->with('info', 'Successfully added a product');
+    }
 }
